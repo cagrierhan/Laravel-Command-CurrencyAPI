@@ -30,6 +30,8 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    //api key tanımlaması için
     'api' => [
         'code' => env('EXCHANGE_RATES_API_KEY'),
         'currency' => env('EXCHANGE_RATES_API_KEY'),

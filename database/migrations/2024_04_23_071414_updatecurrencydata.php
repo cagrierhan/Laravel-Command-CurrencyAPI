@@ -9,19 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
     public function up(): void
     {
         Schema::create(
-            'currencySaver',
+            'UpdateCurrencyVariable',
             function (Blueprint $table) {
                 $table->id();
-                $table->string('code');
-                $table->string('type');
-                $table->integer('buying');
-                $table->integer('selling');
-                $table->integer('change');
-                $table->timestamp('updatetime');
+                $table->string('name');
+                $table->float('buying');
+                $table->float('selling');
+                $table->float('change');
+                $table->timestamps();
             }
         );
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('currencySaver');
+        Schema::dropIfExists('UpdateCurrencyVariable');
     }
 };
