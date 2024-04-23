@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class DataSendModel extends Model
 {
-     protected $table = 'UpdateCurrencyVariable';
-     protected $fillable = [
+    protected $table = 'UpdateCurrencyVariable';
+    protected $fillable = [
         'name',
         'buying',
         'selling',
         'change',
+        'update_at',
     ];
 }

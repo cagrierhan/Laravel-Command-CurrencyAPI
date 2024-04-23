@@ -17,31 +17,28 @@ class CurrencyGet extends Command
     }
 
     public function handle()
-{
-    $client = new Client();
-    $response = $client->get('https://finans.truncgil.com/devextreme-datasource.php');
-    $data = json_decode($response->getBody(), true);
+    {
+        $client = new Client();
+        $response = $client->get('https://finans.truncgil.com/devextreme-datasource.php');
+        $data = json_decode($response->getBody(), true);
 
 
+        foreach ($data as $key) {
+            $uniqueKey = $key['Currency'];
 
-            foreach ($data as $key) {
-
-              DataSendModel::updateOrCreate(
-
-                  [
-                    'name' => $key['Currency'],
+            DataSendModel::updateOrCreate(
+                [
+                    'name' => $uniqueKey,
+                ],
+                [
                     'buying' => $key['Buying'],
                     'selling' => $key['Selling'],
-                    'change' => $key['Change'],
-                ]);
-
-            // DataSendModel::where('name', $key['Currency'])
-            //     ->update([
-            //         'buying' => $key['Buying'],
-            //         'selling' => $key['Selling'],
-            //         'change' => $key['Change'],
-            //     ]);
-     $this->info('Currency data retrieved and saved successfully.');
+                    'change' => $key['Change']
+                ]
+            );
         }
+
+
+        $this->info('Currency data retrieved and saved successfully.');
     }
 }
